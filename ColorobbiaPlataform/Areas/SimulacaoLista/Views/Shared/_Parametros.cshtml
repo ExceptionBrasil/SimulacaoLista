@@ -1,0 +1,29 @@
+﻿@model Modelos.SimulacaoLista.ParametrosDaSimulacao
+
+
+<div class="form-group">
+    @Html.LabelFor(parametro => parametro.Filial)
+    @Html.DropDownList("Filial", null,String.Empty,new {Id= "Filial", @class="form-control" })
+</div>
+<div class="form-group">
+    @Html.LabelFor(parametro => parametro.CodigoDoProduto)
+    @Html.TextBoxFor(parametro => parametro.CodigoDoProduto,true,null, new { @class = "form-control", @list = "ListCodigoDoProduto" })
+    <datalist  id="ListCodigoDoProduto">
+        <option></option>
+    </datalist>
+</div>
+<div class="form-group form-con">
+    @Html.LabelFor(parametro => parametro.FormulaBase)
+    @Html.TextBoxFor(parametro => parametro.FormulaBase, true, null, new { @class = "form-control", @placeholder = "Deixe esse campo em branco para utilizar a última fórmula", @list= "ListFormulas" })
+    <datalist id="ListFormulas">
+        <option></option>
+    </datalist>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(parametro => parametro.FormulaSimulacao)
+    @Html.TextBoxFor(parametro => parametro.FormulaSimulacao, true, null, new { @class = "form-control", @placeholder = "Deixe esse campo em branco para utilizar a última fórmula", @list = "ListFormulas" })
+    <datalist id="ListFormulas">
+        <option></option>
+    </datalist>
+</div>

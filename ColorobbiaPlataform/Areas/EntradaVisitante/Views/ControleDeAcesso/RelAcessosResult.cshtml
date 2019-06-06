@@ -1,0 +1,65 @@
+﻿@model IList<Modelos.Cadastros.Visitantes.AcessoModelView>
+
+@{
+    ViewBag.Title = "Relatório de Acesso";
+    Layout = "~/Views/Shared/_LayoutImpresso.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <table class="table">
+            <tr>
+                <td> <img src="~/Content/Imagens/Logos/LOGO_48PX.png" /></td>
+                <td>
+                    <div class="text-center">
+                        <h2>Relatório de Controle de Acesso</h2>
+                    </div>
+                </td>
+                <td>  @DateTime.Now</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+
+                    <th>IdAcesso</th>
+                    <th>IdVisitante</th>
+                    <th>Nome</th>
+                    <th>Rg</th>
+                    <th>Documento</th>
+                    <th>Telefone</th>
+                    <th>Empresa</th>
+                    <th>Visitado</th>
+                    <th>Data de Entrada</th>
+                    <th>Data de Saida</th>
+                    <th>Motivo</th>
+                </tr>
+            </thead>
+            @foreach (var acesso in Model)
+            {
+                <tr>
+                    <td>@acesso.IdAcesso</td>
+                    <td>@acesso.IdVisitante</td>
+                    <td>@acesso.Nome</td>
+                    <td>@acesso.Rg</td>
+                    <td>@acesso.Documento</td>
+                    <td>@acesso.Telefone</td>
+                    <td>@acesso.Empresa</td>
+                    <td>@acesso.Visitado</td>
+                    <td>@acesso.DataEntrada</td>
+                    <td>@acesso.DataSaida</td>
+                    <td>@acesso.Motivo</td>
+                </tr>
+            }
+            <tbody>
+        </table>
+    </div>
+    <a href="@Url.Action("RelAcessos","ControleDeAcesso")" class="btn btn-link">Voltar</a>
+</div>
+
+
+

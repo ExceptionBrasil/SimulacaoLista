@@ -1,0 +1,102 @@
+﻿@model IList<Modelos.Cadastros.Visitantes.ControleDeAcesso>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <h4>Últimos Acessos</h4>
+    <hr />
+    <div class="row justify-content-end">
+        <div class="col col-lg-1 col-md-1 col-sm-1">
+            <a class="tooltipped" data-position="top" data-tooltip="Ver últimos acessos"
+               href="@Url.Action("UltimosAcessos","ControleDeAcesso")">
+                <img src="~/Content/Imagens/Icons/calendário-50.png" width="32px" />
+            </a>
+        </div>
+        <div class="col col-lg-1 col-md-1 col-sm-1">
+            <a class="tooltipped" data-position="top" data-tooltip="Acessos sem saída" href="@Url.Action("Index","ControleDeAcesso")">
+                <img src="~/Content/Imagens/Icons/grupos-de-usuários-40.png"  width="32px" />
+            </a>
+        </div>
+            <div class="col col-lg-2 col-md-2 col-sm-2">
+                <img src="~/Content/Imagens/Icons/add-64.png" width="32px" />
+                @Html.ActionLink("Novo Acesso", "Incluir", "ControleDeAcesso", new { area = "EntradaVisitante" })
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+
+            <div class="col col-sm-12 col-lg-12 col-md-12">
+                <table class="table table-bordered table-hover table-sm" id="tabVisitas">
+                    <thead>
+                        <tr>
+                            <th>Id</th>                           
+                            <th>Visitante</th>                           
+                            <th>Empresa</th>
+                            <th>Visitado</th>
+                            <th>Entrada</th>
+                            <th>Saida</th>
+                            <th>Motivo</th>
+                            <th>Excluir</th>
+                            <th>Saída</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var acesso in Model)
+                        {
+                            <tr>
+                                <td>@acesso.Visitante.Id</td>                                
+                                <td>@acesso.Visitante.Nome</td>                                
+                                <td>@acesso.Visitante.Empresa</td>
+                                <td>@acesso.Visitado</td>
+                                <td>@acesso.DataEntrada.ToString("dd/MM/yyyy HH:mm:ss")</td>
+                                <td>@acesso.DataSaida</td>
+                                <td><a href="@Url.Action("Alterar","ControleDeAcesso",new {id=acesso.Id })" id="btnEditar"><img src="~/Content/Imagens/Icons/lápis-24.png" width="26px" /></a></td>
+                                <td><a href="@Url.Action("Excluir","ControleDeAcesso",new {id=acesso.Id })" ><img src="~/Content/Imagens/Icons/apagar-64.png" width="26px" /></a></td>
+                                <td>
+                                    @if (acesso.DataSaida == null)
+                                    {
+                                        <a href="@Url.Action("GerarSaida","ControleDeAcesso",new {id=acesso.Id })" id="btnExit"><img src="~/Content/Imagens/Icons/sair-40.png" width="26px" /></a>
+                                    }
+
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Id</th>
+                            <th>Visitante</th>
+                            <th>Empresa</th>
+                            <th>Entrada</th>
+                            <th>Saida</th>
+                            <th>Editar</th>
+                            <th>Excluir</th>
+                            <th>Saída</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+
+@section scripts{
+    <script type="text/javascript" src="~/Scripts/Custons/WebService.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //Opções: https://datatables.net/manual/options
+            $('#tabVisitas').DataTable({
+                "paging": true, //paginação ativada
+                "pageLength": 20, //Número de linhas por página
+                "oLanguage": ptbr
+            });
+
+        });
+
+        $(document).ready(function () {
+            $('.tooltipped').tooltip();
+        });       
+    </script>
+}

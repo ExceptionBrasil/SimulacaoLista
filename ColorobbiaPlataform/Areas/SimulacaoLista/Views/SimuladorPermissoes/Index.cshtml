@@ -1,0 +1,60 @@
+﻿@model IList<Modelos.SimulacaoLista.PermissoesDaSimulacao>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <hr class="hr-text font-12" data-content="Permissões da Simulação" />
+    </div>
+    <div class="row">
+        <a href="@Url.Action("Incluir","SimuladorPermissoes",new {Area="SimulacaoLista"})">
+            <img src="~/Content/Imagens/Icons/add-64.png"  width="24px"/> Nova Permissão
+        </a>
+    </div>
+    <hr />
+    <div class="row">
+        <table class="table table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Regra</th>
+                    <th>Data de Criação</th>
+                    <th>Editar</th>
+                    <th>Excluir</th>                   
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var p in Model)
+                {
+                <tr>
+                    <td>@p.Id</td>
+                    <td>@p.Role.Description</td>
+                    <td>@p.DataDeCriacao</td>
+                    <td>
+                        <a href="@Url.Action("Alterar","SimuladorPermissoes",new {Area="SimulacaoLista",Id=p.Id })">
+                            <img src="~/Content/Imagens/Icons/lápis-24.png" />
+                        </a>
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Excluir","SimuladorPermissoes",new {Area="SimulacaoLista",Id=p.Id })">
+                            <img src="~/Content/Imagens/Icons/apagar-64.png" width="24px"/>
+                        </a>
+                    </td>                    
+                </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Id</th>
+                    <th>Regra</th>
+                    <th>Data de Criação</th>
+                    <th>Editar</th>
+                    <th>Excluir</th>                   
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+

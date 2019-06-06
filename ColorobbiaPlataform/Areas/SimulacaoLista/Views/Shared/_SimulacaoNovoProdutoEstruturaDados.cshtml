@@ -1,0 +1,42 @@
+﻿@model IList<Modelos.Formulas.EstruturaProduto>
+
+<div class="col col-12 col-md-12 col-xl-12 col-lg-12">
+    <h5>Fórmula Simulação</h5>
+    <div class="font-12">
+        <table class="table table-hover table-info table-bordered" id="tabEstrutura">
+            <thead class="teal lighten-2">
+                <tr compute="NO">
+                    <th></th>
+                    <th>Nível</th>
+                    <th>Produto</th>
+                    <th>Componente</th>
+                    <th>Tipo</th>
+                    <th>Unidade</th>
+                    <th><div class="text-center">%</div></th>
+                    <th>Custo</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="blue-grey lighten-4" compute="NO" total-line="true">
+                    <th colspan="9">
+                        <div class="text-center">
+                            Totais
+                        </div>
+                    </th>
+                </tr>
+                <tr compute="NO" total-line="true">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><span></span></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+﻿@model Modelos.SimulacaoLista.PermissoesDaSimulacaoModelView
+@{
+    ViewBag.Title = "Exclusão";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col col-12">
+            <h3>Confirma a Exclusão?</h3>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        @using (Html.BeginForm("Excluir", "SimuladorPermissoes", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.Partial("_PermissoesViewer")
+            <hr />
+            
+                <input type="submit" class="btn btn-danger" value="Excluir" />
+                @Html.ActionLink("Voltar","Index","SimuladorPermissoes",new { Area = "SimulacaoLista" }, new { @class= "btn btn-outline-success" })
+
+           
+            <div class="toaster">
+                @Html.ValidationMessageFor(p => p.NivelMaximo)
+            </div>
+
+            <div class="toaster">
+                @Html.ValidationMessageFor(p => p.Role)
+            </div>
+
+            <div class="toaster">
+                @Html.ValidationMessageFor(p => p.DiscoverCustos)
+            </div>
+
+          
+        }
+    </div>
+</div>
+

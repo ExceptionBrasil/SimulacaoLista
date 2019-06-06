@@ -1,0 +1,35 @@
+﻿@model Modelos.Admin.Acessos.MenuModelView
+
+<div class="form-Group">
+    @Html.LabelFor(r=> r.Area)
+    @Html.TextBoxFor(r=> r.Area, new {@class="form-control", @placeholder="Endereço que precede o controller" })
+</div>
+<div class="form-Group">
+    @Html.LabelFor(r=> r.Controller)
+    @Html.TextBoxFor(r=> r.Controller, new { @class = "form-control", @placeholder ="Endere do controller"})
+</div>
+<div class="form-Group">
+    @Html.LabelFor(r=> r.Action)
+    @Html.TextBoxFor(r=> r.Action, new{ @class = "form-control", @placeholder ="Ação do Menu"})
+</div>
+<div class="form-Group">
+    @Html.LabelFor(r=> r.Location)
+    @Html.TextBoxFor(r=> r.Location, new { @class = "form-control", @placeholder ="A localização onde o menu será exibido, por ex: home"})
+</div>
+<div class="form-Group">
+    @Html.LabelFor(r=> r.Grupo,"Agrupador de funções")
+    @Html.TextBoxFor(r=> r.Grupo, new { @class = "form-control", @placehoulder ="Nome do agrupador, por ex: cadastros"})
+</div>
+<div class="form-Group">
+    @Html.LabelFor(r => r.Role, "Regra")
+    @Html.DropDownList("Role", null, String.Empty, new { id = "Role", @class = "form-control"})   
+
+</div>
+<div class="form-Group">
+    @Html.LabelFor(r=> r.Descricao,"Descrição")
+    @Html.TextBoxFor(r=> r.Descricao,new { @class = "form-control" })
+</div>
+<div class="form-group">
+    @Html.LabelFor(r=> r.Icon)
+    @Html.TextBoxFor(r => r.Icon,new { @class = "form-control" })
+</div>

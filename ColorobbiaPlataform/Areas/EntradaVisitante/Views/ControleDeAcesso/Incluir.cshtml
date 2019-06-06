@@ -1,0 +1,136 @@
+﻿@model Modelos.Cadastros.Visitantes.AcessoModelView
+@{
+    ViewBag.Title = "Incluir";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div class="container">
+        <div class="row">
+            <div class="col col-6">
+                @using (Html.BeginForm("Incluir", "ControleDeAcesso", new { area = "EntradaVisitante" }, FormMethod.Post, new { id = "form" }))
+                {
+
+                    @Html.AntiForgeryToken()
+
+
+
+
+                    @Html.Partial("_AcessoModelView")
+                    <input type="submit" value="Gravar" class="btn btn-primary" id="btnEnviar" />
+
+
+                    <div class="toaster">
+                        @Html.ValidationMessageFor(x => x.Documento)
+                    </div>
+                    <div class="toaster">
+                        @Html.ValidationMessageFor(x => x.Empresa)
+                    </div>
+                    <div class="toaster">
+                        @Html.ValidationMessageFor(x => x.Motivo)
+                    </div>
+                    <div class="toaster">
+                        @Html.ValidationMessageFor(x => x.Nome)
+                    </div>
+                    <div class="toaster">
+                        @Html.ValidationMessageFor(x => x.Rg)
+                    </div>
+                    <div class="toaster">
+                        @Html.ValidationMessageFor(x => x.Telefone)
+                    </div>
+
+                    <div class="toaster">
+                        @Html.ValidationMessageFor(x => x.Visitado)
+                    </div>
+
+                    <div class="toaster">
+                        @Html.ValidationMessage("BLQ")
+                    </div>
+
+                }
+            </div>
+            <div class="col col-3">
+                <video id="video" class="video shadow" autoplay></video>
+                <button id="snap" class="btn btn-secondary btn-sm">Fotografar</button>
+            </div>
+            <div class="col col-3">
+                <div class="img-hover">
+                    <canvas id="canvas" class="shadow" width="320" height="240" style="width:100%;"></canvas>                    
+                    <h2 class="img-preview">Preview</h2>
+                </div>                
+            </div>           
+        </div>
+        
+
+    </div>
+
+
+
+
+@section scripts{
+
+    <script type="text/javascript" src="~/Scripts/Custons/WebService.min.js"></script>
+
+    <script type="text/javascript">
+
+         var urlWebService = "@Url.Action("GetVisitor", "ControleDeAcesso")";
+
+        //Faz a validação do formulário client-side
+        $(document).ready(function () {           
+
+            //Aplica máscaras ao formulário
+            $("#Telefone").mask("(99) 99999-9999");
+            $("#Documento").mask("99999999999");
+
+
+
+            var btnEnviar = document.querySelector("#btnEnviar");
+
+            //Ao clicar no enviar remove a máscara dos campos
+            btnEnviar.addEventListener("click", function () {
+                $("#Telefone").unmask();
+                $("#Documento").unmask();
+
+                var foto = document.querySelector("#Foto");
+
+                //if (foto.value === "") {
+                //    fotografar();
+                //}
+            });
+
+
+            var img_preview = document.querySelector(".img-preview");
+            img_preview.hidden = true;
+
+            // Grab elements, create settings, etc.
+            var video = document.getElementById('video');
+
+            // Get access to the camera!
+            if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                // Not adding `{ audio: true }` since we only want video now
+                navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
+                    //video.src = window.URL.createObjectURL(stream);
+                    video.srcObject = stream;
+                    video.play();
+                });
+            }
+            
+            // Elements for taking the snapshot
+            var canvas = document.getElementById('canvas');
+            var context = canvas.getContext('2d');
+            var video = document.getElementById('video');
+            var foto = document.querySelector("#Foto");
+
+            // Trigger photo take
+            document.getElementById("snap").addEventListener("click", fotografar);
+
+            //Tira um foto 
+            function fotografar() {
+                 img_preview.hidden = false;
+                context.drawImage(video, 0, 0, 320, 240);
+                foto.value = canvas.toDataURL("image/jpeg");
+            }
+
+        });
+    </script>
+    <script type="text/javascript" src="~/Scripts/Custons/GetVisitor.js"></script>
+}

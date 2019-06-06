@@ -1,0 +1,63 @@
+﻿@model Modelos.SimulacaoLista.ParametrosDaSimulacao
+@{
+                /**/
+
+                ViewBag.Title = "Simular";
+                Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="text-center">
+            <h2><img src="~/Content/Imagens/Icons/flask32.png" /> Simulação de Fórmulas</h2>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col col-sm-12 col-md-12 col-lg-12">
+            @using (Html.BeginForm("Simulacao", "Simulador", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+                @Html.Partial("_Parametros")
+
+                <input type="submit" class="btn btn-primary" value="Simular" />
+                <!--Mensagens de validação-->
+                <div class="toaster">
+                    @Html.ValidationMessageFor(parametro => parametro.CodigoDoProduto)
+                </div>
+                <div class="toaster">
+                    @Html.ValidationMessageFor(parametro => parametro.Filial)
+                </div>
+                <div class="toaster">
+                    @Html.ValidationMessage("FORMULA")
+                </div>
+
+            }
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript" src="~/Scripts/Custons/WebService.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/Custons/Simulador/SearchProduto.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/Custons/Simulador/SearchProduto-Fomula.js"></script>
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var codigoDaFormula = document.querySelector("#CodigoDaFormula");
+            var codigoDoProduto = document.querySelector("#CodigoDoProduto");
+
+            $('#CodigoDoProduto').keyup(function () {
+                $(this).val($(this).val().toUpperCase());
+            });
+            $('#CodigoDaFormula').keyup(function () {
+                $(this).val($(this).val().toUpperCase());
+            });
+
+        })
+    </script>
+
+}

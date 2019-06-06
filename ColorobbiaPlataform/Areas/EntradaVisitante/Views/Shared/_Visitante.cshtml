@@ -1,0 +1,28 @@
+﻿@model Modelos.Cadastros.Visitantes.Visitante
+
+
+<div class="form-group">
+    @Html.LabelFor(v => v.Nome)
+    @Html.TextBoxFor(v => v.Nome, new { @class = "form-control" })
+</div>
+<div class="form-group">
+    @Html.LabelFor(v => v.Telefone)
+    @Html.TextBoxFor(v => v.Telefone, new { @class = "form-control" })
+</div>
+<div class="form-group">
+    @Html.LabelFor(v => v.Documento)
+    @Html.TextBoxFor(v => v.Documento, new { @class = "form-control" })
+</div>
+<div class="form-group">
+    @Html.LabelFor(v => v.Rg)
+    @Html.TextBoxFor(v => v.Rg, new { @class = "form-control" })
+</div>
+<div class="form-group">
+    @Html.LabelFor(v => v.Empresa)
+    @Html.TextBoxFor(v => v.Empresa, new { @class = "form-control" })
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(v => v.Obs)
+    @Html.TextAreaFor(v => v.Obs, 5, 10, new { @class = "form-control" })
+</div>

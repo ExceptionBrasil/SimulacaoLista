@@ -1,0 +1,29 @@
+﻿@model IList<Modelos.Formulas.EstruturaProduto>
+
+<div class="card">
+    <div class="card-header">
+        <div class="text-center">
+            <h5>
+                <span id="Produto">@ViewBag.Produto.Codigo</span>-<span id="Descricao">@ViewBag.Produto.Descricao</span>
+            </h5>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col col-sm-12 col-md-3 col-lg-3 col-12">
+                <b>Fórmula: </b>
+                <span data-tippy="Atual: @ViewBag.Produto.Formula" id="FormulaEscolhida">@ViewBag.FormulaSimulacao</span>
+            </div>
+            <div class="col col-sm-12 col-md-3 col-lg-3 col-12">
+                <b>Rendimento: </b>
+                <span id="RendimentoEscolhido" data-tippy="Atual: @ViewBag.Produto.Rendimento%"> @ViewBag.RendimentoEscolhido </span>%
+            </div>
+            <div class="col col-sm-12 col-md-3 col-lg-3 col-12">
+                <b>Grupo: </b><span id="CentroCusto"> @ViewBag.Produto.CentroCusto </span>-<span id="DescricaoCCusto"> @ViewBag.Produto.DescricaoCCusto</span>
+            </div>
+            <div class="col col-sm-12 col-md-3 col-lg-3 col-12">
+                <b>Família: </b> <span id="Familia">@ViewBag.Produto.Familia</span>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+﻿@model Modelos.SimulacaoLista.PermissoesDaSimulacaoModelView
+
+
+<div class="form-group">
+
+    @Html.LabelFor(p => p.Role)
+    @Html.DropDownList("Role", null, String.Empty, new { id = "Role", @class = "form-control" })
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(p => p.NivelMaximo)
+    @Html.TextBoxFor(p => p.NivelMaximo, new { @class = "form-control" })
+</div>
+
+<div class="custom-control custom-switch">
+    @Html.CheckBoxFor(p => p.DiscoverCustos, true, new { @class = "custom-control-input" })
+    @Html.LabelFor(p => p.DiscoverCustos, new { @class = "custom-control-label" })
+</div>
+<div class="custom-control custom-switch">
+    @Html.CheckBoxFor(p => p.DiscoverColunaDeCustos, true, new { @class = "custom-control-input" })
+    @Html.LabelFor(p => p.DiscoverColunaDeCustos, new { @class = "custom-control-label" })
+</div>
+<div class="custom-control custom-switch">
+    @Html.CheckBoxFor(p => p.FazAprovacao, true, new { @class = "custom-control-input" })
+    @Html.LabelFor(p => p.FazAprovacao, new { @class = "custom-control-label" })
+</div>
+<br />
+<div class="form-inline row">
+    @Html.LabelFor(p => p.TipoDeCalculo)
+    @Html.DropDownListFor(p => p.TipoDeCalculo,
+        new SelectList(
+            ViewBag.TipoDeCalculo,
+            "Id",
+            "Descricao",
+            Model.TipoDeCalculo)
+        , new { @class = "form-control" })
+</div>
+

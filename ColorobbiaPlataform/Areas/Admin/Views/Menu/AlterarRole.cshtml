@@ -1,0 +1,24 @@
+﻿@model Modelos.Admin.Acessos.Role
+@{
+    ViewBag.Title = "AlterarRole";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm("AlterarRole", "Menu", FormMethod.Post))
+{
+    <div class="container">
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(r => r.Id)
+        @Html.Partial("_Role")
+        <input type="submit" value="Gravar" class="btn btn-primary" />
+
+    </div>
+
+}
+
+
+@section scripts{
+
+    <script type="text/javascript">$("form").validate();</script>
+}

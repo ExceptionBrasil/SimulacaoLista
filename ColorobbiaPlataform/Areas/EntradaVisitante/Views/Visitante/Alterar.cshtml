@@ -1,0 +1,71 @@
+﻿@model Modelos.Cadastros.Visitantes.Visitante
+@{
+    ViewBag.Title = "Alterar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col col-12">
+            <fieldset>
+                <legend class="text-center">Alteração de Cadastro</legend>
+
+                @using (Html.BeginForm("Alterar", "Visitante", new { Area = "EntradaVisitante" }, FormMethod.Post,new { @Id="Form"}))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(v => v.Id)
+
+
+                    @Html.Partial("_Visitante")
+
+                    <input type="submit" value="Gravar" class="btn btn-primary" id="btnEnviar" />
+
+                    <div class="toaster">
+                        @Html.ValidationMessageFor(v => v.Nome)
+                    </div>
+                    <div class="toaster">
+                        @Html.ValidationMessageFor(v => v.Rg)
+                    </div>
+                    <div class="toaster">
+                        @Html.ValidationMessageFor(v => v.Documento)
+                    </div>
+                    <div class="toaster">
+                        @Html.ValidationMessageFor(v => v.Empresa)
+                    </div>
+                    <div class="toaster">
+                        @Html.ValidationMessageFor(v => v.Telefone)
+                    </div>
+                    <div class="toaster">
+                        @Html.ValidationMessageFor(v => v.Bloqueado)
+                    </div>
+                    <div class="toaster">
+                        @Html.ValidationMessage("JAEXISTE")
+                    </div>
+
+                }
+
+            </fieldset>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#Form").validate();
+
+            //Aplica máscaras ao formulário
+            $("#Telefone").mask("(99) 99999-9999");
+            $("#Documento").mask("99999999999999");
+
+            var btnEnviar = document.querySelector("#btnEnviar");
+
+            //Ao clicar no enviar remove a máscara dos campos
+            btnEnviar.addEventListener("click", function () {
+                $("#Telefone").unmask();
+                $("#Documento").unmask();
+            });
+
+        });
+    </script>
+    }

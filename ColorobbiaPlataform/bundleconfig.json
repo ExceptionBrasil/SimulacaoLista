@@ -1,0 +1,80 @@
+[
+  {
+    "outputFileName": "Scripts/Custons/js-toast-master/toast.min.js",
+    "inputFiles": [
+      "Scripts/Custons/js-toast-master/toast.js"
+    ]
+  },
+  {
+    "outputFileName": "Content/materialize.toast.min.css",
+    "inputFiles": [
+      "Content/materialize.toast.css"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/Custons/WebService.min.js",
+    "inputFiles": [
+      "Scripts/Custons/WebService.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/Custons/GetVisitor.min.js",
+    "inputFiles": [
+      "Scripts/Custons/GetVisitor.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/Custons/MenuBuilder.min.js",
+    "inputFiles": [
+      "Scripts/Custons/MenuBuilder.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/Custons/Simulador/SearchProduto.min.js",
+    "inputFiles": [
+      "Scripts/Custons/Simulador/SearchProduto.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/Custons/Simulador/SearchProduto-Fomula.min.js",
+    "inputFiles": [
+      "Scripts/Custons/Simulador/SearchProduto-Fomula.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/Custons/Simulador/Simulador-Dynamic.min.js",
+    "inputFiles": [
+      "Scripts/Custons/Simulador/Simulador-Dynamic.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/Custons/js-toast-master/ToastShow.min.js",
+    "inputFiles": [
+      "Scripts/Custons/js-toast-master/ToastShow.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/Custons/FormFields.min.js",
+    "inputFiles": [
+      "Scripts/Custons/FormFields.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/Custons/Simulador/Simulador-Json.min.js",
+    "inputFiles": [
+      "Scripts/Custons/Simulador/Simulador-Json.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/Custons/Simulador/Simulador-Save.min.js",
+    "inputFiles": [
+      "Scripts/Custons/Simulador/Simulador-Save.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/Custons/Simulador/Simulador-Table-chart.min.js",
+    "inputFiles": [
+      "Scripts/Custons/Simulador/Simulador-Table-chart.js"
+    ]
+  }
+]

@@ -1,0 +1,72 @@
+﻿@model Modelos.Cadastros.Visitantes.Visitante
+@{
+
+
+    ViewBag.Title = "Alterar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="card">
+            <div class="row no-gutters align-items-center">
+                <div class="col col-lg col-md col-sm">
+                    <canvas id="canvas" class="img-fluid" width="320" height="240"></canvas>
+                </div>
+                <div class="col col-lg col-md col-sm">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <b>@Html.LabelFor(v => v.Nome):</b> @Html.DisplayFor(v => v.Nome)
+                            <hr />
+                        </div>
+                        <div class="card-text">
+                            <ul>
+                                <li>
+                                    @Html.LabelFor(v => v.Telefone):
+                                    @Html.DisplayFor(v => v.Telefone, new { @class = "form-control" })
+                                </li>
+                                <li>
+                                    @Html.LabelFor(v => v.Documento):
+                                    @Html.DisplayFor(v => v.Documento, new { @class = "form-control" })
+                                </li>
+                                <li>
+                                    @Html.LabelFor(v => v.Rg):
+                                    @Html.DisplayFor(v => v.Rg, new { @class = "form-control" })
+                                </li>
+                                <li>
+                                    @Html.LabelFor(v => v.Empresa):
+                                    @Html.DisplayFor(v => v.Empresa, new { @class = "form-control" })
+                                </li>
+                                <li>
+                                    @Html.LabelFor(v => v.Obs):
+                                    @Html.DisplayFor(v => v.Obs, new { @class = "form-control" })
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+              // Elements for taking the snapshot
+            var canvas = document.getElementById('canvas');
+            var context = canvas.getContext('2d');
+
+            //ViewBag.ImagemB64
+            var imagem = new Image();
+
+            imagem.onload = function() {
+                context.drawImage(this, 0, 0, canvas.width, canvas.height);
+            }
+            imagem.src = "@ViewBag.ImagemB64";
+
+        });
+    </script>
+}

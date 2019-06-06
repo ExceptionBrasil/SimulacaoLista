@@ -1,0 +1,91 @@
+﻿@model IList<Modelos.Formulas.EstruturaProduto>
+
+@if (ViewBag.Permissoes.DiscoverCustos)
+{
+    <div class="card green lighten-4">
+        <div class="card-header">
+            <div class="text-center">
+                <h5>Fórmula Base - @ViewBag.FormulaBase </h5>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <b>Rendimento:</b> @ViewBag.ProdutoSimulacao.Rendimento%
+                </div>
+            </div>
+            <div class="row">
+                <div class="col ">
+                    <b>Embalagem</b> (@ViewBag.ProdutoBase.CustoEmbalagemPercent %):
+                </div>
+                <div class="col">
+                    @string.Format("{0:0.0000}", ViewBag.ProdutoBase.CustoEmbalagem)
+                </div>
+                <div class="col">
+                    <b>Custo Operacional:</b>
+                </div>
+                <div class="col ">
+                    @ViewBag.ProdutoBase.CustoOperacional
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col ">
+                    <b>Custo Industrial: </b>
+                </div>
+                <div class="col " id="CustoIndustrial">
+                    @string.Format("{0:0.0000}", ViewBag.ProdutoBase.CustoIndustrial)
+                </div>
+
+                <div class="col">
+                    <b>Desp. Operacionais (@string.Format("{0:0.00}", @ViewBag.ProdutoBase.DespesasOperacionais)%):</b>
+                </div>
+                <div class="col " id="DespesasOperacionaisCalculada">
+                    @string.Format("{0:0.0000}", ViewBag.ProdutoBase.DespesasOperacionaisCalculada)
+                </div>
+            </div>
+            <hr />
+            <div class="row alert green lighten-2">
+                <div class="col col-sm-3 col-md-3 col-lg-3 col-12">
+                    <b>Total do Produto (S/P): </b>
+                </div>
+                <div class="col col-sm-1 col-md-1 col-lg-1 col-12" id="TotalDoProdutoBase">
+                    @string.Format("{0:0.00}", @ViewBag.ProdutoBase.CustoTotalDoProduto)
+                </div>
+                <div class="col col-sm-3 col-md-3 col-lg-3 col-12">
+                    <b>Total do Produto (C/P): </b>
+                </div>
+                <div class="col col-sm-1 col-md-1 col-lg-1 col-12">
+                    @string.Format("{0:0.00}", @ViewBag.ProdutoBase.CustoTotalDoProdutoMargem)
+                </div>
+                <div class="col col-sm-3 col-md-3 col-lg-3 col-12">
+                    <b>Preço Base(@string.Format("{0:0.00}", ViewBag.ProdutoBase.MargemLucro)%):</b>
+                </div>
+                <div class="col col-sm-1 col-md-1 col-lg-1 col-12">
+                    @string.Format("{0:0.00}", @ViewBag.ProdutoBase.PrecoBase)
+                </div>
+            </div>
+            <div class="row alert green">
+                <div class="col">
+                    <b>Icms 7%:</b>
+                </div>
+                <div class="col">
+                    @string.Format("{0:0.00}", @ViewBag.ProdutoBase.PrecoBaseIcm7)
+                </div>
+                <div class="col">
+                    <b>Icms 12%:</b>
+                </div>
+                <div class="col">
+                    @string.Format("{0:0.00}", @ViewBag.ProdutoBase.PrecoBaseIcm12)
+                </div>
+                <div class="col">
+                    <b>Icms 18%:</b>
+                </div>
+                <div class="col">
+                    @string.Format("{0:0.00}", @ViewBag.ProdutoBase.PrecoBaseIcm18)
+                </div>
+            </div>
+            <hr />
+        </div>
+    </div>
+}

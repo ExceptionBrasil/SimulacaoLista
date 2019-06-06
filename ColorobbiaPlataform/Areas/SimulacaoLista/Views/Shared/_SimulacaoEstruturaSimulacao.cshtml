@@ -1,0 +1,156 @@
+﻿@model IList<Modelos.Formulas.EstruturaProduto>
+
+<div class="col col-12 col-md-12 col-xl-6 col-lg-6">
+    <h5>Fórmula Simulação</h5>
+    @if (Model.Count > 0)
+    {
+        <div class="font-12">
+            <table class="table table-hover table-info table-bordered" id="tabEstrutura">
+                <thead class="blue lighten-2">
+                    <tr compute="NO">
+                        <th></th>
+                        <th>Nível</th>
+                        <th>Produto</th>
+                        <th>Componente</th>
+                        <th>Tipo</th>
+                        <th>Unidade</th>
+                        <th><div class="text-center">%</div></th>
+                        <th @ViewBag.HiddenCol>Custo</th>
+                        <th @ViewBag.HiddenCol>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        var it = 0;
+                        var nivelOld = Model[it].Nivel;
+                        string linha = "";
+                        var nivel = 0;
+                        string accordionId = "";
+                        string collapseId = "";
+                    }
+                    @while (it < Model.Count)
+                    {
+                        linha += "<tr id=\"" + Model[it].Id.ToString() + "\">";
+                        linha += "<td remove='true'><a href='#'><img src='/Content/Imagens/Icons/menos-16.png' /></a></td>";
+                        linha += "<td>" + Model[it].Nivel.ToString() + "</td>";
+                        linha += "<td>" + Model[it].Produto.ToString() + "</td>";
+                        linha += "<td editableProduct='true' data-tippy='" + Model[it].DescricaoComponente + "'> " + Model[it].Componente + "</td>";
+                        if (Model[it].Tipo == "PA")
+                        {
+                            linha += "<td class='alert alert-primary'>" + Model[it].Tipo + "</td>";
+                        }
+                        else
+                        {
+                            linha += "<td>" + Model[it].Tipo + "</td>";
+                        }
+
+                        linha += "<td>" + Model[it].Unidade + "</td>";
+                        linha += "<td editable='true'>  " + string.Format("{0:0.00}", Model[it].PercentualFormula) + "</td>";
+                        linha += "<td "+ViewBag.HiddenCol+">" + string.Format("{0:0.0000}", Model[it].CustoMateriPrima) + "</td>";
+                        linha += "<td "+ViewBag.HiddenCol+" total-column='true'>" + string.Format("{0:0.0000}", Model[it].CustoTotalComponente) + "</td>";
+                        linha += "</tr>";
+
+                        it++;
+                        if (it == Model.Count)
+                        {
+                            nivel = 0;
+                        }
+                        else
+                        {
+                            nivel = Model[it].Nivel;
+                        }
+
+
+                        if (nivelOld != nivel)
+                        {
+                            <!--Itens do Nível 1, que virá aberto-->
+                            if (nivelOld == 1)
+                            {
+                                @Html.Raw(linha)
+                                <tr class="blue-grey lighten-4" compute="NO" total-line="true">
+                                    <th colspan="9">
+                                        <div class="text-center">
+                                            Totais
+                                        </div>
+                                    </th>
+                                </tr>
+                                <tr compute="NO" total-line="true">
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td @ViewBag.HiddenCol></td>
+                                    <td><span>@ViewBag.ProdutoSimulacao.GetTotalPercentualNivel(nivelOld)</span></td>
+                                    <td @ViewBag.HiddenCol><span></span></td>
+                                    <td><span>@string.Format("{0:0.0000}", ViewBag.ProdutoSimulacao.GetCustoTotalNivelComRendimento(nivelOld))</span></td>
+                                </tr>
+                            }
+
+                            <!--Itens do Nível 2 ou maior-->
+                            if (nivelOld >= 2)
+                            {
+                                accordionId = "accordion" + nivelOld.ToString();
+                                collapseId = "collapse" + nivelOld.ToString();
+                                <tr>
+                                    <td colspan="9">
+                                        <div class="accordion" id="@accordionId">
+
+                                            <a class="link" type="link" data-toggle="collapse" data-target="#@collapseId"
+                                               aria-expanded="true" aria-controls="collapseOne" href="#">
+                                                <img src="https://img.icons8.com/metro/26/000000/chevron-down.png"> @Model[it - 1].Produto
+                                            </a>
+
+                                            <div id="@collapseId" class="collapse collapsed" aria-labelledby="headingOne"
+                                                 data-parent="#@accordionId">
+                                                <table>
+                                                    <thead class="blue-grey lighten-3">
+                                                        <tr compute="NO">
+                                                            <th></th>
+                                                            <th>Nível</th>
+                                                            <th>Produto</th>
+                                                            <th>Componente</th>
+                                                            <th>Tipo</th>
+                                                            <th>Unidade</th>
+                                                            <th><div class="text-center">Fórmula %</div></th>
+                                                            <th @ViewBag.HiddenCol>Custo MP</th>
+                                                            <th @ViewBag.HiddenCol>Cust. Total Produto</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @Html.Raw(linha)
+                                                        <tr class="blue-grey lighten-4" compute="NO" total-line="true">
+                                                            <th colspan="9">
+                                                                <div class="text-center">
+                                                                    Totais
+                                                                </div>
+                                                            </th>
+                                                        </tr>
+                                                        <tr compute="NO" total-line="true">
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td @ViewBag.HiddenCol></td>
+                                                            <td><span>@ViewBag.ProdutoSimulacao.GetTotalPercentualNivel(nivelOld)</span></td>
+                                                            <td><span></span></td>
+                                                            <td @ViewBag.HiddenCol><span>@string.Format("{0:0.0000}", ViewBag.ProdutoSimulacao.GetCustoTotalNivelComRendimento(nivelOld))</span></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                            linha = "";
+                            nivelOld = nivel;
+                        }
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    }
+</div>

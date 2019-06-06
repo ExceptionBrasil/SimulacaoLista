@@ -1,0 +1,93 @@
+﻿@model IList<Modelos.Formulas.EstruturaProduto>
+
+@if (ViewBag.Permissoes.DiscoverCustos)
+{
+
+
+    <div class="card blue lighten-4">
+        <div class="card-header">
+            <div class="text-center">
+                <h5>Fórmula Simulação - @ViewBag.FormulaSimulacao</h5>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col ">
+                    <b>Rendimento:</b> @ViewBag.RendimentoEscolhido%
+                </div>
+            </div>
+            <div class="row">
+                <div class="col ">
+                    <b>Embalagem</b> (<span id="CustoEmbalagemPercent">@ViewBag.Produto.CustoEmbalagemPercent</span>  %):
+                </div>
+                <div class="col">
+                    <a class="black-text" href="#" id="Embalagem"> @string.Format("{0:0.0000}", ViewBag.Produto.CustoEmbalagem)</a>
+                </div>
+                <div class="col">
+                    <b>Custo Operacional:</b>
+                </div>
+                <div class="col ">
+                    <a href="#" class="black-text" id="CustoOperacional"> @ViewBag.Produto.CustoOperacional</a>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col ">
+                    <b>Custo Industrial: </b>
+                </div>
+                <div class="col " id="CustoIndustrial">
+                    @string.Format("{0:0.0000}", ViewBag.Produto.CustoIndustrial)
+                </div>
+
+                <div class="col">
+                    <b>Desp. Operacionais (<a href="#" class="black-text" id="DespesaOperacional"> @string.Format("{0:0.00}", @ViewBag.Produto.DespesasOperacionais)</a>%):</b>
+                </div>
+                <div class="col " id="DespesasOperacionaisCalculada">
+                    @string.Format("{0:0.0000}", ViewBag.Produto.DespesasOperacionaisCalculada)
+                </div>
+            </div>
+            <hr />
+            <div class="row alert blue lighten-2">
+                <div class="col col-sm-3 col-md-3 col-lg-3 col-12">
+                    <b>Total do Produto (S/P): </b>
+                </div>
+                <div class="col col-sm-1 col-md-1 col-lg-1 col-12" id="CustoTotalDoProduto">
+                    @string.Format("{0:0.00}", @ViewBag.Produto.CustoTotalDoProduto)
+                </div>
+                <div class="col col-sm-3 col-md-3 col-lg-3 col-12">
+                    <b>Total do Produto (C/P): </b>
+                </div>
+                <div class="col col-sm-1 col-md-1 col-lg-1 col-12" id="CustoTotalDoProdutoMargem">
+                    @string.Format("{0:0.00}", @ViewBag.Produto.CustoTotalDoProdutoMargem)
+                </div>
+                <div class="col col-sm-3 col-md-3 col-lg-3 col-12">
+                    <b>Preço Base(<a href="#" class="black-text" id="MargemLucro">@string.Format("{0:0.00}", ViewBag.Produto.MargemLucro)</a>%):</b>
+                </div>
+                <div class="col col-sm-1 col-md-1 col-lg-1 col-12" id="PrecoBase">
+                    <span id="PrecoBase">@string.Format("{0:0.00}", @ViewBag.Produto.PrecoBase)</span>
+                </div>
+            </div>
+            <div class="row alert blue">
+                <div class="col">
+                    <b>Icms 7%:</b>
+                </div>
+                <div class="col" id="Icms7">
+                    @string.Format("{0:0.00}", @ViewBag.Produto.PrecoBaseIcm7)
+                </div>
+                <div class="col">
+                    <b>Icms 12%:</b>
+                </div>
+                <div class="col" id="Icms12">
+                    @string.Format("{0:0.00}", @ViewBag.Produto.PrecoBaseIcm12)
+                </div>
+                <div class="col">
+                    <b>Icms 18%:</b>
+                </div>
+                <div class="col" id="Icms18">
+                    @string.Format("{0:0.00}", @ViewBag.Produto.PrecoBaseIcm18)
+                </div>
+            </div>
+            <hr />
+        </div>
+    </div>
+}

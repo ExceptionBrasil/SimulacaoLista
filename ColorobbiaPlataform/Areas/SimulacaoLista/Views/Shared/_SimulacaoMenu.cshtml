@@ -1,0 +1,60 @@
+﻿<nav class="navbar navbar-expand navbar-dark blue lighten-2 fixed-bottom">
+    <a class="navbar-brand" href="#">  <img src="~/Content/Imagens/Icons/flask32.png" /> Simulação de Fórmulas</a>
+    <ul class="navbar-nav ml-auto ">
+        <li>
+            <button class="btn btn-sm btn-outline-dark" id="AdicionaLinha">
+                <i data-tippy="Nova linha" class="material-icons">library_add</i>
+            </button>
+        </li>
+        <li class="nav-item">
+            <a class="btn btn-sm btn-outline-dark" href="#" id="Comparar">
+                <i data-tippy="Comparar" class="material-icons">compare_arrows</i>
+            </a>
+        </li>
+        <li>
+            <a class="btn btn-sm btn-outline-dark" href="#" id="Comparar" data-toggle="modal" data-target="#legendaModal">
+                <i data-tippy="Leganda" class="material-icons">blur_linear</i>
+            </a>
+        </li>
+        <li>
+            <a class="btn btn-sm btn-outline-dark" id="Atualiza" href="#">
+                <i data-tippy="Recarregar Página" class="material-icons">refresh</i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="btn btn-sm btn-outline-dark" href="@Url.Action("Parametros","Simulador",new { Area="SimulacaoLista"})">
+                <i data-tippy="Voltar para tela de parâmetros" class="material-icons">arrow_back</i>
+            </a>
+        </li>
+        <li>
+            <a class="btn btn-sm btn-outline-dark" href="#" id="SalvarJson">
+                <i data-tippy="Salvar" class="material-icons">save_alt</i>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+
+<!-- Modal -->
+<div class="modal fade" id="legendaModal" tabindex="-1" role="dialog" aria-labelledby="legendaModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header blue lighten-2">
+                <h5 class="modal-title" id="legendaModalLabel">Legenda</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row">
+                        <span class="alert alert-dark" style="width:100%"> Removido da Fórmula Base</span>
+                    </div>
+                    <div class="row">
+                        <span class="alert alert-warning" style="width:100%"> Modificado na Fórmula Simulação</span>
+                    </div>
+                </div>
+            </div>           
+        </div>
+    </div>
+</div>

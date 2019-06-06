@@ -1,0 +1,67 @@
+﻿@using SessionControl
+@using ColorobbiaPlataform.Helpers.Html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title </title>
+    <link rel="stylesheet" href="~/Content/Site.css" />
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/materialize.toast.min.css" />
+    <link rel="stylesheet" href="~/Scripts/Custons/Table/datatables.min.css" />
+    <link rel="stylesheet" href="~/Content/colors.min.css" />
+    <link rel="stylesheet" href="~/Content/animate.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+    <script type="text/javascript" src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/Custons/jquery.mask.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/Custons/Table/datatables.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/Custons/Table/pt-br-datatable.js"></script>
+</head>
+
+<body>
+    @if (this.ViewContext.RouteData.Values["controller"].ToString() != "Login")
+    {
+        @Html.Partial("_MenuSuperior")
+    }
+
+    <main>
+        @RenderBody()
+    </main>
+    <footer>
+        <p>&copy; @DateTime.Now.Year - Colorobbia Plataform - @InformationsHelper.Version - @NHibernateFactory.Ambiente - @this.Session["usuarioNome"].ToString()</p>
+    </footer>
+    <script src="~/Scripts/popper.min.js"></script>
+    <script src="~/Scripts/index.all.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/Custons/Materialize/materialize.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/Custons/js-toast-master/ToastShow.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap-notify.min.js"></script>
+
+    <script type="text/javascript">
+
+        var urlGetMenu = "@Url.Action("GetByLocation", "Menu",new { Area="Admin"})";
+    </script>
+
+    <script type="text/javascript" src="~/Scripts/Custons/WebService.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var btnTrocaSenha = document.querySelector("#TrocaSenha");
+            btnTrocaSenha.addEventListener("click", function () {
+               var NovaSenha = document.querySelector("#novaSenha").value;
+               var obj = { novaSenha: NovaSenha };
+                WebService.Init(obj, "@Url.Action("TrocarSenha", "Account",new { Area="Admin"})", function (response) {
+                    if (response.success) {
+                        ShowToast(response.menssage);
+
+                    }
+                });
+            });
+        });
+    </script>
+    <script type="text/javascript" src="~/Scripts/Custons/MenuBuilder.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

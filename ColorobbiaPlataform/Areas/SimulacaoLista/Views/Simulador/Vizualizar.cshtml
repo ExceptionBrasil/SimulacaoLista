@@ -1,0 +1,50 @@
+﻿@model IList<Modelos.Formulas.EstruturaProduto>
+@{
+    ViewBag.Title = "Vizualizar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <!--DADOS DO PRODUTO-EXIBIÇÃO GERAL-->
+    @Html.Partial("_SimulacaoExibicaoGeralView")
+    <br />
+    @Html.Partial("_SimulacaoExibicaoOutrasInformacoesView")
+
+
+</div>
+
+<!--Estrutura do Produto-->
+<br />
+@Html.Partial("_SimulacaoEstruturaView")
+
+<div class="container">
+    <div class="row justify-content-center">
+        @Html.ActionLink("Voltar", "Index", "Simulador", new { Area = "SimulacaoLista" }, new { @class = "no-print" })
+    </div>
+</div>
+
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col col-12">
+            <div id="chart"></div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript" src="~/Scripts/apexcharts/dist/apexcharts.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/Custons/Simulador/Simulador-Table-chart.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            var _chart;            
+            SimuladorChart.ViewOnly();
+        });
+    </script>
+
+
+}

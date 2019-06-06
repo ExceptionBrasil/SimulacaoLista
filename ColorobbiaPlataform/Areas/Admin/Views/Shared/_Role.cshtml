@@ -1,0 +1,12 @@
+﻿@model Modelos.Admin.Acessos.Role
+
+
+    <div class="form-Group">
+        @Html.LabelFor(r => r.Description, "Regra")
+        @Html.TextBoxFor(r => r.Description, new { @placeholder = "Nome da regra: admin, usuario,superusuario", @class = "form-control" })
+    </div>
+    <div class="form-Group">
+        @Html.LabelFor(r => r.Value, "Codigo da Regra")
+        @Html.TextBoxFor(r => r.Value, new { @placeholder = "0,500,1000,2000,10000,50000", @class = "form-control" })
+    </div>
+

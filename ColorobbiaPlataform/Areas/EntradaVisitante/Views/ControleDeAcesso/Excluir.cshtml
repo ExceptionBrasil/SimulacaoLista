@@ -1,0 +1,68 @@
+﻿@model Modelos.Cadastros.Visitantes.AcessoModelView
+@{
+    ViewBag.Title = "Excluir";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col col-8">
+            @using (Html.BeginForm("Excluir", "ControleDeAcesso", new { area = "EntradaVisitante" }, FormMethod.Post, new { id = "form" }))
+            {
+
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(v => v.Id)
+                @Html.HiddenFor(v => v.Foto)
+                @Html.HiddenFor(v => v.Nome)
+                @Html.HiddenFor(v => v.Empresa)
+                @Html.HiddenFor(v => v.Documento)
+                @Html.HiddenFor(v => v.Rg)
+                @Html.HiddenFor(v => v.IdVisitante)
+
+                <div class="alert alert-danger" role="alert">
+                    <h4 class="alert-heading">Exclusão da Visita</h4>
+                    <hr />
+                    <p>Visitante: @Model.Nome</p>
+                    <p>Empresa: @Model.Empresa</p>
+                    <p>Data de Entrada: @Model.DataEntrada</p>
+                    <p>Visitado:   @Html.DisplayFor(a => a.Visitado)</p>
+                    <p>Motivo:    @Html.DisplayFor(a => a.Motivo)</p>
+                </div>
+                
+                <br />
+                <input type="submit" value="Excluir" class="btn btn-danger" id="btnEnviar" />
+
+
+            }
+        </div>
+        <div class="col col-4 border">   
+            <canvas id="canvas" class="img-fluid" width="320" height="240"></canvas>
+
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+          
+
+            // Elements for taking the snapshot
+            var canvas = document.getElementById('canvas');
+            var context = canvas.getContext('2d');
+
+            //ViewBag.ImagemB64
+            var imagem = new Image();
+
+            imagem.onload = function() {
+                context.drawImage(this, 0, 0, canvas.width, canvas.height);
+            }
+            imagem.src = "@ViewBag.ImagemB64";
+
+
+            context.drawImage(imagem,  0, 0, 320, 240);
+           
+        });
+    </script>
+}

@@ -1,0 +1,33 @@
+﻿@model Modelos.Admin.Acessos.Role
+@{
+    ViewBag.Title = "IncluirRole";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+@using (Html.BeginForm("IncluirRole", "Menu", FormMethod.Post))
+{
+
+    @Html.AntiForgeryToken()
+    <div class="container">
+        
+            @Html.Partial("_Role")
+            <input type="submit" value="Gravar" class="btn btn-primary" />
+        
+    </div>
+    <div class="toaster">
+        @Html.ValidationMessageFor(r => r.Description)
+    </div>
+    <div class="toaster">
+        @Html.ValidationMessageFor(r => r.Value)
+    </div>
+
+}
+
+
+
+@section scripts{
+    <script type="text/javascript">$("form").validate();</script>
+}

@@ -1,0 +1,40 @@
+﻿@model Modelos.Cadastros.Visitantes.ControleDeAcesso
+@{
+                /**/
+
+                ViewBag.Title = "Data de Saída";
+                Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col col-12">
+            @using (Html.BeginForm("GravarSaida", "ControleDeAcesso", new { area = "EntradaVisitante" }, FormMethod.Post, new { id = "form" }))
+            {
+
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(v => v.Id)
+
+
+
+                <div class="alert alert-info" role="alert">
+                    <h4 class="alert-heading">Informe a data de saída do visitante</h4>
+                    <p>Visitante: @Model.Visitante.Nome</p>
+                    <p>Empresa: @Model.Visitante.Empresa</p>
+                    <p>Data de Entrada: @Model.DataEntrada</p>
+                </div>
+
+                <div class="form-Group">
+                    @Html.LabelFor(a => a.DataSaida)
+                    @Html.TextBoxFor(a => a.DataSaida, new { @type = "datetime-local", @class = "form-control", @rows = 5 })
+                </div>
+                <br />
+                <input type="submit" value="Gravar" class="btn btn-success" id="btnEnviar" />
+
+                <div class="toaster">
+                    @Html.ValidationMessageFor(x => x.DataSaida)
+                </div>
+            }
+        </div>
+    </div>
+</div>

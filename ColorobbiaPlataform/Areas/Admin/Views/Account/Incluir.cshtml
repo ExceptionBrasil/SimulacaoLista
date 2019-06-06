@@ -1,0 +1,40 @@
+﻿@model Modelos.Admin.Acessos.UsuarioModelView
+@{
+    ViewBag.Title = "Incluir";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="text-center">
+        <h3><img src="~/Content/Imagens/Icons/usuario-80.png" width="48px" />Inclusão de Usuários</h3>
+    </div>
+    <div class="row">
+        <div class="col col-12">
+            @using (Html.BeginForm("Incluir", "Account", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.Partial("_usuario")
+                <input type="submit" value="Gravar" class="btn btn-primary" />
+
+                <div class="toaster">
+                    @Html.ValidationMessageFor(u => u.Email, null, new { @class = "text-danger" })
+                </div>
+                <div class="toaster">
+                    @Html.ValidationMessageFor(u => u.Login, null, new { @class = "text-danger" })
+                </div>
+                <div class="toaster">
+                    @Html.ValidationMessageFor(u => u.Nome, null, new { @class = "text-danger" })
+                </div>
+                <div class="toaster">
+                    @Html.ValidationMessageFor(u => u.Password, null, new { @class = "text-danger" })
+                </div>
+
+
+            }
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    
+}

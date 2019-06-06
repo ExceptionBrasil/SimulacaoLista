@@ -1,0 +1,49 @@
+﻿@model Modelos.Admin.Acessos.MenuModelView
+
+@{
+    ViewBag.Title = "AlterarMenu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col col-12">
+            @using (Html.BeginForm("AlterarMenu", "Menu", FormMethod.Post))
+            {
+                @Html.HiddenFor(m => m.Id) 
+                @Html.AntiForgeryToken() 
+                @Html.Partial("_Menu") 
+            
+                <input type="submit" id="btnEnviar" value="Gravar" class="btn btn-primary" />
+
+            <div class="toaster">
+                @Html.ValidationMessageFor(r => r.Action)
+            </div>
+            <div class="toaster">
+                @Html.ValidationMessageFor(r => r.Controller)
+            </div>
+            <div class="toaster">
+                @Html.ValidationMessageFor(r => r.Grupo)
+            </div>
+            <div class="toaster">
+                @Html.ValidationMessageFor(r => r.Location)
+            </div>
+            <div class="toaster">
+                @Html.ValidationMessageFor(r => r.Role)
+            </div>
+            <div class="toaster">
+                @Html.ValidationMessageFor(r => r.Descricao)
+            </div>
+        }
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script src="~/Scripts/Custons/FormFields.min.js"></script>
+    <script type="text/javascript">$("form").validate();</script>
+}
+

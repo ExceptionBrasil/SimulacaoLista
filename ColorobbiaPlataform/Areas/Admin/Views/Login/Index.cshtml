@@ -1,0 +1,60 @@
+﻿@model Modelos.Admin.Login
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="mx-auto">
+            <div class="card text-white border-primary shadow" id="card">
+                <img class="card-img-top" src="~/Content/Imagens/Logos/LOGO_192PX.png" />
+                <hr />
+                <div class="card-body">
+                    @using (Html.BeginForm("ValidaLogin", "Login", FormMethod.Post))
+                    {
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <img class="input-group-sm" src="~/Content/Imagens/Icons/usuário-de-gênero-neutro-filled-50.png" />
+                            </div>
+                            @Html.TextBoxFor(l => l.UserName, new { @class = "form-control" })
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <img src="~/Content/Imagens/Icons/trancar-40.png" />
+                            </div>
+                            @Html.PasswordFor(l => l.Password, new { @class = "form-control" })
+                        </div>
+                        <br />
+                        <input type="submit" value="Acessar" class="btn btn-outline-primary btn-block" />
+
+                        <div class="toaster">
+                            @Html.ValidationMessageFor(l => l.Password)
+                        </div>
+                        <div class="toaster">
+                            @Html.ValidationMessageFor(l => l.UserName)
+                        </div>
+                        <div class="toaster">
+                            @Html.ValidationMessage("Login")
+                        </div>
+                    }
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if ("False"==="@ViewBag.IsTest") {
+                $("#card").addClass("border-danger");
+            } else {
+                $("#card").addClass("border-primary");
+            }
+        });
+    </script>
+}

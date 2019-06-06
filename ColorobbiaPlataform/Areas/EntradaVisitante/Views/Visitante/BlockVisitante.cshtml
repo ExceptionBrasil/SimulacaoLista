@@ -1,0 +1,48 @@
+﻿@model Modelos.Cadastros.Visitantes.Visitante
+@{
+    ViewBag.Title = "BlockVisitante";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.HiddenFor(v => v.Id)
+
+<div class="container">
+    
+        <div class="col col-6 mx-auto">
+            <div class="alert alert-danger" role="alert">
+                <div class="alert-heading">
+                    <h3>Bloqueio/Desbloqueio de Visitante</h3>
+                </div>
+                <br />
+                Quer mesmo <strong>bloquear/desbloquear</strong> esse visitante?
+                <hr />
+                <button class="btn btn-outline-danger" id="btnSend">Bloquear/Desbloquear</button>
+            </div>
+        </div>      
+    </div>
+@section scripts{
+    <script type="text/javascript" src="~/Scripts/Custons/WebService.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var btnSend = document.getElementById("btnSend");
+            btnSend.addEventListener("click", fnEnviar)
+        });
+        
+
+        let fnEnviar = () => {
+            let objToSend = { Id:@Model.Id}
+            let toUrl = "@Url.Action("Block", "Visitante", new { Area="EntradaVisitante"})";
+            let method = "post";
+            let typeData = "json";
+
+            WebService.Init(objToSend, toUrl, function (response) {
+                ShowToast(response.mensage);
+
+                setTimeout(function () {
+                    window.location.href = response.redirect;
+                },1500);
+                
+            });
+        }
+    </script>
+    }

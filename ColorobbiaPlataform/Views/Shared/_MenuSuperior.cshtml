@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "Menu";
+}
+
+
+
+<nav class="navbar navbar-expand-sm navbar-light" style="background-color: #039BDC;">
+    <a class="navbar-brand text-white" href="@Url.Action("Index","Home",routeValues:new { Area=""})">Colorobbia</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+
+        <ul class="navbar-nav ml-auto">
+            
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-white" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Menu</a>
+                <div class="dropdown-menu dropdown-menu-right ">
+                    <!--trocar a senha-->
+                    <a class="dropdown-item" data-toggle="modal" data-target="#modalTrocaSenha" href="#"><i class="material-icons">vpn_key</i>Troca de Senha</a>
+                    <!--Menu Dinâmico -->
+                    <div id="LoadMenu"></div>
+                </div>
+            </li>
+            @if ((bool)Session["admin"])
+            {
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-white" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Administração</a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="nav-link" href="@Url.Action("Index", "Account", new { Area="Admin"})"><i class="material-icons">account_box</i> Usuários</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="nav-link" href="@Url.Action("Index", "Menu", new { Area="Admin"})"><i class="material-icons">assignment</i> Roles e Menus</a>
+                        <a class="nav-link" href="@Url.Action("Index", "Help", new { Area="Helps"})"><i class="material-icons">send</i> Avisos da Home</a>                        
+                    </div>
+                </li>
+            }
+
+        </ul>
+    </div>
+</nav>
+
+
+<!-- Modal da Troca de Senha-->
+<div class="modal fade" id="modalTrocaSenha" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header light-blue">
+                <h5 class="modal-title" id="exampleModalLabel">Nova senha de acesso</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Informe a nova Senha: <input type="password" id="novaSenha" class="form-control" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-primary" id="TrocaSenha">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,62 @@
+﻿@model Modelos.Cadastros.Produtos.ProdutoModelView
+@{
+    ViewBag.Title = "Excluir";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+
+    <fieldset>
+        @if (ViewBag.UsuarioDeAprovacao == null)
+        {
+            <legend class="alert alert-danger">Confirma a exclusão desse Produto?</legend>
+        }
+        else
+        {
+            <legend class="alert alert-warning">Produto já passou pelo processo de aprovação. Não pode ser excluído!</legend>
+        }
+
+        <p>
+            <b>Código: </b>@Html.DisplayFor(p => p.Id) - @Html.DisplayFor(p => p.Codigo)
+        </p>
+        <hr />
+        @using (Html.BeginForm("Excluir", "Simulador", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        @Html.LabelFor(p => p.Descricao)
+                        @Html.TextBoxFor(p => p.Descricao, htmlAttributes: new { @class = "form-control", @readonly = true })
+                        @Html.LabelFor(p => p.DescricaoCCusto)
+                        @Html.TextBoxFor(p => p.DescricaoCCusto, htmlAttributes: new { @class = "form-control", @readonly = true })
+                        @Html.LabelFor(p => p.Formula)
+                        @Html.TextBoxFor(p => p.Formula, htmlAttributes: new { @class = "form-control", @readonly = true })
+                        @Html.LabelFor(p => p.CustoTotalDoProduto)
+                        @Html.TextBoxFor(p => p.CustoTotalDoProduto, htmlAttributes: new { @class = "form-control", @readonly = true })
+
+                    </div>
+                    <a href="@Url.Action("Vizualizar","Simulador",new { Area="SimulacaoLista",idSimulacao=Model.Id,geraPdf=false})">
+                        <img class="ico" src="~/Content/Imagens/Icons/visualizar-arquivo-48.png" />
+                        Produto Completo
+                    </a>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col col-1">
+                    @if (ViewBag.UsuarioDeAprovacao == null)
+                    {
+                        <input type="submit" class="btn btn-outline-danger" value="Excluir" />
+                    }
+                    </div>
+                <div class="col col-1">
+                    @Html.ActionLink("Voltar", "Index", "Simulador", new { Area = "SimulacaoLista" }, new { @class = "btn btn-primary" })
+                </div>
+            </div>
+
+        }
+
+    </fieldset>
+</div>
+

@@ -1,0 +1,28 @@
+﻿@model Modelos.Mensageria.MensagensTruck
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="text-center">
+            <h3>Mensagem para o Painel de Motoristas</h3>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col col-12">
+            @using (Html.BeginForm("IncluirMensagemTruck", "Mensageiro", FormMethod.Post))
+            {
+
+                <div class="form-group">
+                    @Html.LabelFor(x => x.Mensagem)
+                    @Html.TextBoxFor(x => x.Mensagem, new { @class = "form-control", @placeholder = "Mensagem a ser exibida no painel"})
+
+                </div>
+                <input type="submit" class="btn btn-primary" value="Enviar" />
+            }
+        </div>
+    </div>
+</div>

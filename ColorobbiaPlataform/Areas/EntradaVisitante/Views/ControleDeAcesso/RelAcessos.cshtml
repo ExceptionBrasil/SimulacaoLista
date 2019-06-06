@@ -1,0 +1,77 @@
+﻿@model Modelos.Relatorios.Parametros.RelAcessosParametros
+@{
+    ViewBag.Title = "RelAcessos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="col col-12">
+        <div class="row">
+            <div class="text-center">
+                <h2>Relatório de Acesso de Visitantes</h2>
+            </div>
+        </div>
+        <div class="row">
+            @using (Html.BeginForm("RelAcessosResult", "ControleDeAcesso", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()                
+
+                <div class="form-row">
+                    <div class="col col-6">
+                        @Html.LabelFor(c => c.DataEntradaDe)
+                        @Html.TextBoxFor(c => c.DataEntradaDe, new { @class = "form-control", @type = "datetime-local" })
+                    </div>
+                    <div class="col col-6">
+                        @Html.LabelFor(c => c.DataEntradaAte)
+                        @Html.TextBoxFor(c => c.DataEntradaAte, new { @class = "form-control", @type = "datetime-local" })
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col col-6">
+                        @Html.LabelFor(c => c.DataSaidaDe)
+                        @Html.TextBoxFor(c => c.DataSaidaDe, new { @class = "form-control", @type = "datetime-local" })
+                    </div>
+                    <div class="col col-6">
+                        @Html.LabelFor(c => c.DataSaidaAte)
+                        @Html.TextBoxFor(c => c.DataSaidaAte, new { @class = "form-control", @type = "datetime-local" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(c => c.Visitado)
+                    @Html.TextBoxFor(c => c.Visitado, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(c => c.Visitante)
+                    @Html.TextBoxFor(c => c.Visitante, new { @class = "form-control" })
+
+                    @Html.LabelFor(c=> c.Empresa)
+                    @Html.TextBoxFor(c=> c.Empresa, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(c => c.GerarPdf)
+                    @Html.CheckBoxFor(c => c.GerarPdf, new { @class = "form-check-inline" })
+                </div>
+                <br />
+                <input type="submit" value="Gerar relatório" class="btn btn-outline-primary" />
+                <hr />
+
+                <div class="toaster">
+                    @Html.ValidationMessageFor(a => a.DataEntradaAte)
+                </div>
+                <div class="toaster">
+                    @Html.ValidationMessageFor(a => a.DataEntradaDe)
+                </div>
+                <div class="toaster">
+                    @Html.ValidationMessageFor(a => a.DataSaidaAte)
+                </div>
+                <div class="toaster">
+                    @Html.ValidationMessageFor(a => a.DataSaidaDe)
+                </div>
+
+            }
+
+        </div>
+
+    </div>
+</div>
+

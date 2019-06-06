@@ -1,0 +1,65 @@
+﻿@model IList<Modelos.Helps.Help>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <h5> Avisos aos usuários </h5>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col col-2">
+            <a href="@Url.Action("Incluir","Help",new { Area="Helps"})"><img width="32px" src="~/Content/Imagens/Icons/add-64.png" /> Novo</a>
+        </div>
+    </div>
+    <hr />
+    <div class="row">        
+        <table class="table table-hover table-bordered">
+            <thead>
+                <tr>
+                    <td>Id</td>
+                    <td>Texto</td>
+                    <td>Data de Publicação</td>
+                    <td>Data de Expiração</td>
+                    <td>Role</td>
+                    <td>Editar</td>
+                    <td>Publicar</td>
+                    <td>Excluir</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var help in Model)
+                {
+                    <tr>
+                        <td>@help.Id</td>
+                        <td>@help.Texto</td>
+                        <td>@help.DataPublicacao</td>
+                        <td>@help.DataExpiracao</td>
+                        <td>@help.Role.Description</td>
+                        <td>
+                            <a href="@Url.Action("Alterar","Help", routeValues: new {Id=help.Id, Area="Helps"})">
+                                <img src="~/Content/Imagens/Icons/lápis-24.png" width="16px"/>
+                            </a>
+                        </td>
+                        <td>
+                            
+                            <a href="@Url.Action("Publicar","Help", routeValues: new {Id=help.Id, Area="Helps"})">
+                                <img src="~/Content/Imagens/Icons/rocket-16.png" />
+                            </a>
+                        </td>
+                        <td>
+                            
+                            <a href="@Url.Action("Excluir","Help", routeValues: new {Id=help.Id, Area="Helps"})">
+                                <img src="~/Content/Imagens/Icons/apagar-64.png" width="16px"/>
+                            </a>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

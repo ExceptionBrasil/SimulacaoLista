@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title </title>
+    <link rel="stylesheet" href="~/Content/Site.css" />
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/materialize.toast.min.css" />
+    <link rel="stylesheet" href="~/Scripts/Custons/Table/datatables.min.css" />
+    <link rel="stylesheet" href="~/Content/colors.min.css" />
+
+    <script type="text/javascript" src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/Custons/jquery.mask.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/Custons/Table/datatables.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/Custons/Table/pt-br-datatable.js"></script>
+</head>
+
+<body>
+   <main>
+    @RenderBody()
+</main>
+<script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
+<script type="text/javascript" src="~/Scripts/Custons/Materialize/materialize.min.js"></script>
+<script type="text/javascript" src="~/Scripts/Custons/js-toast-master/ToastShow.js"></script>
+<script>
+    var urlGetMenu = "@Url.Action("GetByLocation", "Menu",new { Area="Admin"})";
+</script>
+<script type="text/javascript" src="~/Scripts/Custons/MenuBuilder.js"></script>
+@RenderSection("scripts", required: false)
+</body>
+</html>

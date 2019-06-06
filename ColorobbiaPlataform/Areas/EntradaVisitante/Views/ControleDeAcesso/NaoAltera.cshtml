@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "NaoAltera";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <div class="row">
+        <div class="col col-12 text-center">
+            <div class="jumbotron red darken-4">
+                <h4 class="text-white">
+                    Esse acesso de visitante não pode ser alterado!
+                </h4>
+                <p class="text-white">O acesso já foi finalizado com a gravação de uma data de saída.</p>
+                <hr class="black"/>
+                <a href="@Url.Action("Index","ControleDeAcesso")" class="btn btn-dark">Voltar</a>
+            </div>
+        </div>
+    </div>
+</div>
+

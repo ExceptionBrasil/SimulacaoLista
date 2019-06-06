@@ -1,0 +1,130 @@
+﻿@model IList<Modelos.Cadastros.Visitantes.Visitante>
+@using X.PagedList.Mvc;
+@using X.PagedList;
+@using X.PagedList.Mvc.Common;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <div class="row">
+        <fieldset>
+            <legend class="text-center"><img src="~/Content/Imagens/Icons/grupos-de-usuários-40.png" /> Cadastro de Visitantes</legend>
+            <br />
+            @Html.Label("Pesquisar ")
+            @Html.TextBox("Pesquisa",null,new { @placeholder="Nome do visitante",@class="form-control-sm"})
+            <button class="btn btn-sm btn-outline-info" id="Localizar">Localizar</button>
+            <hr />
+            <table class="table table-hover" id="tabVisitas">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nome</th>
+                        <th>Bloqueado</th>
+                        <th>CPF</th>
+                        <th>RG</th>
+                        <th>Empresa</th>
+                        <th>Editar</th>
+                        <th>Bloquear</th>
+                        <th>Visualizar</th>
+                    </tr>
+                </thead>
+                <tbody id="tbodyVisitante">
+                    @foreach (var visitante in Model)
+                    {
+                        <tr>
+                            <td>@visitante.Id</td>
+                            @if (@visitante.Bloqueado)
+                            {
+                                <td><img src="~/Content/Imagens/Icons/bloqueio-de-estrada-30.png" /></td>
+                            }
+                            else
+                            {
+                                <td></td>
+                            }
+
+                            <td>@visitante.Nome</td>
+                            <td>@visitante.Documento</td>
+                            <td>@visitante.Rg</td>
+                            <td>@visitante.Empresa</td>
+                            <td><a href="@Url.Action("Alterar","Visitante",new { Area="EntradaVisitante",Id=visitante.Id} )"><img src="~/Content/Imagens/Icons/lápis-24.png" height="16px" /></a></td>
+                            <td><a href="@Url.Action("BlockVisitante","Visitante",new {Area="EntradaVisitante",Id=visitante.Id })"><img src="~/Content/Imagens/Icons/cancelar-48.png" height="16px" /></a></td>
+                            <td><a href="@Url.Action("Visualizar","Visitante",new { Area="EntradaVisitante",Id=visitante.Id})"><img src="~/Content/Imagens/Icons/visualizar-arquivo-48.png" style="width:20px;" /></a></td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nome</th>
+                        <th>Bloqueado</th>
+                        <th>CPF</th>
+                        <th>RG</th>
+                        <th>Empresa</th>
+                        <th>Editar</th>
+                        <th>Bloquear</th>
+                    </tr>
+                </tfoot>
+            </table>
+
+            @Html.PagedListPager((IPagedList)ViewBag.paginaDeVisitante,
+                                pagina => Url.Action("Index", new { pagina = pagina })
+                                , new PagedListRenderOptions
+                                {
+                                    LiElementClasses = new string[] { "page-item" },
+                                    PageClasses = new string[] { "page-link" }
+                                })
+           
+        </fieldset>
+        
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var localizar = document.querySelector("#Localizar");
+
+            localizar.addEventListener("click", function () {
+                let toUrl = "@Url.Action("GetByName","Visitante")";
+                let pesquisa = document.querySelector("#Pesquisa")
+                let obj = { name: pesquisa.value };
+
+                WebService.Init(obj, toUrl, function (response) {
+                    if (response.success) {
+                        var tbodyVisitante = document.querySelector("#tbodyVisitante");
+                        tbodyVisitante.innerHTML = "";
+                        var linha = "";
+
+
+                        for (var i = 0; i < response.visitantes.length; i++) {
+                           
+                            linha += "<tr><td>" + response.visitantes[i].Id + "</td>";
+                            if (response.visitantes[i].Bloqueado)
+                            {
+                                linha += '<td><img src="~/Content/Imagens/Icons/bloqueio-de-estrada-30.png" /></td>';
+                            }
+                            else
+                            {
+                                linha += '<td></td>';
+                            }
+
+                            linha += "<td>" + response.visitantes[i].Nome + "</td>";
+                            linha += "<td>" + response.visitantes[i].Documento+"</td>";
+                            linha += "<td>" + response.visitantes[i].Rg+"</td>";
+                            linha += "<td>" + response.visitantes[i].Empresa + "</td>";
+                            linha += `<td><a href="http://localhost:3388/EntradaVisitante/Visitante/Alterar/` + response.visitantes[i].Id + `"><img src="/Content/Imagens/Icons/lápis-24.png" height="16px" /></a></td>`;
+                            linha += `<td><a href="http://localhost:3388/EntradaVisitante/Visitante/BlockVisitante/` + response.visitantes[i].Id + `"><img src="/Content/Imagens/Icons/cancelar-48.png" height="16px" /></a></td>`;
+                            linha += `<td><a href="http://localhost:3388/EntradaVisitante/Visitante/Visualizar/` + response.visitantes[i].Id + `"><img src="/Content/Imagens/Icons/visualizar-arquivo-48.png" style="width:20px;" /></a></td>`;
+                            linha +="</tr>";                            
+                        }
+                        tbodyVisitante.innerHTML = linha;
+                    }
+                });
+
+            });
+        });
+    </script>
+    }

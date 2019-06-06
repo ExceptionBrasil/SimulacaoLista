@@ -1,0 +1,26 @@
+﻿@model Modelos.Admin.Acessos.UsuarioModelView
+
+<div class="form-group">
+    @Html.LabelFor(u => u.Nome)
+    @Html.TextBoxFor(u => u.Nome, new { @class = "form-control" })
+</div>
+<div class="form-group">
+    @Html.LabelFor(u => u.Email)
+    @Html.TextBoxFor(u => u.Email, new { @class = "form-control" })
+</div>
+<div class="form-group">
+    @Html.LabelFor(u => u.Login)
+    @Html.TextBoxFor(u => u.Login, new { @class = "form-control" })
+</div>
+<div class="form-group">
+    @Html.LabelFor(u => u.Password)
+    @Html.PasswordFor(u => u.Password, new { @class = "form-control" })
+</div>
+<div class="form-group">
+    @Html.LabelFor(u=> u.Role)
+    @Html.DropDownList("Role",null,String.Empty,new {id="Role",@class="form-control" })
+</div>
+<div class="form-group">
+    @Html.LabelFor(u=> u.IsAdmin)
+    @Html.CheckBoxFor(u=> u.IsAdmin, new { @class = "form-check-inline" })
+</div>

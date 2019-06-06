@@ -1,0 +1,39 @@
+﻿@model Modelos.Admin.Usuario
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <div class="row">
+        <div class="col col-md-8 col-lg-8">
+            <div class="text-center">
+                <h5 class="blue-grey-text ">Bem-Vindo</h5>
+                <h6 class="blue-grey-text lighten-4">@Model.Nome</h6>
+            </div>
+        </div>
+            @if (ViewBag.Novidades.Count>0)
+            {
+
+
+            <div class="col col-4">
+                <div class="card">
+                    <img src="~/Content/Imagens/Imagens/im-so-happy-with-my-new-tablet_low.jpg" class="card-img-top" />
+                    <h5 class="card-title" style=" margin-left: 10px; padding-top: 5px; margin-bottom: 0;">Novas Atualizações:</h5>
+                    <hr />
+                    <div class="card-body">
+                        <ul>
+                            @foreach(var n in ViewBag.Novidades)
+                            {   
+                                <li>@n.DataPublicacao.ToShortDateString() - @n.Texto</li>
+
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            }
+
+    </div>
+    
+</div>

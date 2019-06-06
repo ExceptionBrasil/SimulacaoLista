@@ -1,0 +1,59 @@
+﻿@model Modelos.Cadastros.Produtos.ProdutoModelView
+@{
+    ViewBag.Title = "Novo Produto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="text-center">
+            <h2><img src="~/Content/Imagens/Icons/tubo-de-ensaio-32.png" />Novo Produto</h2>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col col-sm-12 col-md-12 col-lg-12">
+            @using (Html.BeginForm("NovoProdutoForm", "Simulador", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.Partial("_NovoProdutoMain")
+                <div class="toaster">
+                    @Html.ValidationMessageFor(p => p.Descricao)
+                </div>
+                <div class="toaster">
+                    @Html.ValidationMessageFor(p => p.Familia)
+                </div>
+                <div class="toaster">
+                    @Html.ValidationMessageFor(p => p.Rendimento)
+                </div>
+
+                <div class="toaster">
+                    @Html.ValidationMessage("_RENDIMENTO")
+                </div>
+
+                <input type="submit" class="btn btn-success" value="Criar" />
+
+            }
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript" src="~/Scripts/Custons/WebService.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var codigoDaFormula = document.querySelector("#CodigoDaFormula");
+            var codigoDoProduto = document.querySelector("#CodigoDoProduto");
+
+            $('#Descricao').keyup(function () {
+                $(this).val($(this).val().toUpperCase());
+            });
+            $('#Familia').keyup(function () {
+                $(this).val($(this).val().toUpperCase());
+            });
+
+        })
+    </script>
+}
+

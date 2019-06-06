@@ -1,0 +1,27 @@
+﻿@model Modelos.Helps.HelpView
+
+@{
+    ViewBag.Title = "Incluir";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <h4>Nova mensagem Inicial</h4>
+        <hr />
+        <div class="col col-12">
+            @using (Html.BeginForm("Incluir", "Help", new { Area = "Helps" }, FormMethod.Post, new { }))
+            {
+                @Html.AntiForgeryToken()
+
+
+                @Html.Partial("_HelpCad")
+
+
+                <div class="form-group">
+                    <input type="submit" value="Incluir" class="btn btn-default" />
+                </div>
+            }
+        </div>
+    </div>
+</div>

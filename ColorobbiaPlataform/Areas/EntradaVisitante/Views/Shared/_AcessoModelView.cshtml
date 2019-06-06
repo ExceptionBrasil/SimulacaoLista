@@ -1,0 +1,38 @@
+﻿@model Modelos.Cadastros.Visitantes.AcessoModelView
+
+<div class="form-row">
+       <div class="form-group col-12">
+        @Html.LabelFor(a => a.Nome)
+        @Html.TextBoxFor(a => a.Nome, true, null, new { @class = "form-control" })
+    </div>
+</div>
+
+<div class="form-row">
+    <div class="form-group col-4">
+        @Html.LabelFor(a => a.Documento)
+        @Html.TextBoxFor(a => a.Documento,true,null, new { @class = "form-control" })
+    </div>
+    <div class="form-group col-4">
+        @Html.LabelFor(a => a.Rg)
+        @Html.TextBoxFor(a => a.Rg, true, null, new { @class = "form-control" })
+    </div>
+    <div class="form-group col-4">
+        @Html.LabelFor(a => a.Telefone)
+        @Html.TextBoxFor(a => a.Telefone, true, null, new { @class = "form-control phone-mask" })
+    </div>
+</div>
+<div class="form-row">
+    <div class="form-group col-6">
+        @Html.LabelFor(a => a.Empresa)
+        @Html.TextBoxFor(a => a.Empresa, true, null, new { @class = "form-control" })
+    </div>
+    <div class="form-group col-6">
+        @Html.LabelFor(a=> a.Visitado)
+        @Html.TextBoxFor(a=> a.Visitado, true, null, new { @class="form-control"})
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(a => a.Motivo)
+    @Html.TextAreaFor(a => a.Motivo,true,5,0, new { @class = "form-control", @rows = 5 })
+</div>
+@Html.HiddenFor(a=> a.Foto)

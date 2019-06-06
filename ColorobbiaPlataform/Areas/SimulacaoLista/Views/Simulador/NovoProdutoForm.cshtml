@@ -1,0 +1,54 @@
+﻿@model IList<Modelos.Formulas.EstruturaProduto>
+@{
+    ViewBag.Title = "NovoProdutoForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<input hidden id="Filial" value="@ViewBag.Filial" />
+<!--Render do Menu-->
+@Html.Partial("_SimulacaoNovoProdutoMenu")
+
+<div class="container">
+
+    @Html.Partial("_SimulacaoNovoProdutoExibicaoOutrasInformacoes")
+</div>
+<br />
+@Html.Partial("_SimulacaoNovoProdutoEstrutura")
+
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col col-12">
+            <div id="chart"></div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript" src="~/Scripts/Custons/WebService.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/Custons/Simulador/Simulador-Dynamic.js"></script>
+    <script type="text/javascript" src="~/Scripts/Custons/Simulador/Simulador-Table-chart.js"></script>
+    <script type="text/javascript" src="~/Scripts/apexcharts/dist/apexcharts.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/Custons/Simulador/Simulador-Json.js"></script>
+    <script type="text/javascript" src="~/Scripts/Custons/Simulador/Simulador-Save.js"></script>
+
+    <script type="text/javascript">
+        
+         var toUrlToSave = "@Url.Action("SalvarSimulacao", "Simulador", new { Area="SimulacaoLista"})"
+
+        $(document).ready(function () {
+            var _chart;
+            Simulador.Init();
+            SimuladorChart.BuildChart();
+
+            var btnAtualiza = document.querySelector("#Atualiza");
+            btnAtualiza.addEventListener("click", function () {
+                location.reload();
+            });
+            
+        });
+    </script>
+
+
+}

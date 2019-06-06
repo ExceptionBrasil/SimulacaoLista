@@ -1,0 +1,42 @@
+﻿@model Modelos.Admin.Acessos.Role
+@{
+    ViewBag.Title = "ExcluirRole";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <div class="text-center alert alert-danger">
+        <h3>Confirma a exclusão dessa regra?</h3>
+    </div>
+</div>
+
+
+
+@using (Html.BeginForm("ExcluirRole", "Menu", FormMethod.Post))
+{
+    <div class="container">
+        @Html.AntiForgeryToken()
+        @Html.Partial("_Role")
+        @Html.HiddenFor(r => r.Id)
+        <input type="submit" id="btnEnviar" value="Excluir" class="btn btn-danger" />
+    </div>
+}
+
+
+
+
+@section scripts{
+
+    <script src="~/Scripts/Custom/FormFields.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            DisableFormFields();
+        });
+
+        $("#btnEnviar").click(function () {
+            EnableFormFields();
+        })
+    </script>
+
+}

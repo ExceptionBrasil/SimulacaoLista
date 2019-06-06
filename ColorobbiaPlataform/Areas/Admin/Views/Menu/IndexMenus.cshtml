@@ -1,0 +1,84 @@
+﻿@model IList<Modelos.Admin.Acessos.Menu>
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <div class="center">
+        <h3><img src="~/Content/Imagens/Icons/livro-de-endereços-40.png" width="32px" /> Cadastro de Menus</h3>
+    </div>
+    <img src="~/Content/Imagens/Icons/add-64.png" width="32px" />@Html.ActionLink("Novo Menu", "IncluirMenu", new { Area="Admin"})
+    <hr />
+    <div class="row">
+        
+        <table class="table table-hover" id="tabelaDeMenus">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Ação</th>
+                    <th>Controller</th>
+                    <th>Area</th>
+                    <th>Descrição</th>
+                    <th>Localização</th>
+                    <th>Agrupado de Funções</th>
+                    <th>Regra</th>
+                    <th>Alterar</th>
+                    <th>Excluir</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var menu in Model)
+                {
+                    <tr>
+                        <td>@menu.Id</td>
+                        <td>@menu.Action</td>
+                        <td>@menu.Controller</td>
+                        <td>@menu.Area</td>
+                        <td>@menu.Descricao</td>
+                        <td>@menu.Location</td>
+                        <td>@menu.Grupo</td>
+                        <td>@menu.Role.Description</td>
+                        <td><a href="@Url.Action("AlterarMenu","Menu",new { id = menu.Id })"><img src="~/Content/Imagens/Icons/lápis-24.png" width="16px"/></a>  </td>
+                        <td><a href="@Url.Action("ExcluirMenu","Menu",new { id = menu.Id })"><img src="~/Content/Imagens/Icons/apagar-64.png" width="16px" /></a>  </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th><a href="#">Id</a></th>
+                    <th><a href="#">Ação</a></th>
+                    <th><a href="#">Controller</a></th>
+                    <th><a href="#">Area</a></th>
+                    <th><a href="#">Descrição</a></th>
+                    <th><a href="#">Localização</a></th>
+                    <th><a href="#">Agrupado de Funções</a></th>
+                    <th><a href="#">Regra</a></th>
+                    <th><a href="#">Alterar</a></th>
+                    <th><a href="#">Excluir</a></th>
+
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+
+@section scripts{  
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //Mais opções veja o link abaixo
+            //https://datatables.net/manual/options
+
+            $('#tabelaDeMenus').DataTable({
+                "paging": true, //paginação ativada
+                "pageLength": 25, //Número de linhas por página
+                "oLanguage": ptbr
+            });
+        });
+    </script>
+    }

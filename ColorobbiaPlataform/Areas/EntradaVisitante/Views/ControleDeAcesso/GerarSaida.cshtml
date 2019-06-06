@@ -1,0 +1,43 @@
+﻿@model Modelos.Cadastros.Visitantes.ControleDeAcesso
+@{
+    ViewBag.Title = "GerarSaída";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col col-12">
+            @using (Html.BeginForm("GerarSaida", "ControleDeAcesso", new { area = "EntradaVisitante" }, FormMethod.Post, new { id = "form" }))
+            {
+
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(v => v.Id)
+                
+
+                <div class="alert alert-info" role="alert">
+                    <h4 class="alert-heading">Alteração do Motivo da visita</h4>
+                    <p>Visitante: @Model.Visitante.Nome</p>
+                    <p>Empresa: @Model.Visitante.Empresa</p>
+                    <p>Data de Entrada: @Model.DataEntrada</p>
+                </div>
+
+                <div class="form-Group">
+                    @Html.LabelFor(a => a.DataSaida)
+                    @Html.TextBoxFor(a => a.DataSaida, new { @class = "form-control",@type= "datetime-local" })
+                </div>
+                <br />
+                <input type="submit" value="Gravar" class="btn btn-primary" id="btnEnviar" />
+
+
+
+                <div class="toaster">
+                    @Html.ValidationMessageFor(x => x.Motivo)
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+}

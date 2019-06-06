@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col s6 m6 l6">
+            @Html.ActionLink("Nova role", "IncluirRole", new { area = "Admin" })
+            <br />
+            @Html.ActionLink("Ver roles cadastradas", "IndexRoles", new { area = "Admin" })
+        </div>
+        <div class="col s6 m6 l6">
+            @Html.ActionLink("Novo menu", "IncluirMenu", new { area = "Admin" })
+            <br />
+            @Html.ActionLink("Ver menus cadastrados", "IndexMenus", new { area = "Admin" })
+        </div>        
+    </div>
+</div>
+
+
+

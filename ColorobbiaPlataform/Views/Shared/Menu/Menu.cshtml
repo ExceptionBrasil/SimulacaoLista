@@ -1,0 +1,22 @@
+﻿
+@if (this.ViewContext.RouteData.Values["controller"].ToString() != "Login")
+{
+    <nav class="navbar navbar-expand-sm navbar-light" style="background-color: #039BDC;">
+        <a class="navbar-brand text-white" href="#">Colorobbia</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="nav">
+                <li class="nav-item  dropdown">
+                    <a class="nav-link dropdown-toggle text-white" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Menu</a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <div id="LoadMenu"></div> 
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+}
+

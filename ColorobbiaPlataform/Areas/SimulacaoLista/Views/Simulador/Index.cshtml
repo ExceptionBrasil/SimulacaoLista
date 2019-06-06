@@ -1,0 +1,91 @@
+﻿@model IList<Modelos.Cadastros.Produtos.Produto>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="text-center">
+        <h2>Minhas Simulações <span class="badge badge-secondary">@Model.Count</span> </h2>
+        <hr />
+    </div>
+    <div class="row">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Filial</th>
+                    <th>Simulacao</th>
+                    <th>Data da Simulacao</th>
+                    <th>Descrição</th>
+                    <th>Família</th>
+                    <th>Total Do Produto</th>
+                    <th>Total C/ Margem</th>
+                    <th>Visualizar</th>
+                    <th>Pdf</th>
+                    <th>Aprovado</th>
+                    <th>Data Aprov.</th>
+                    <th>Excluir</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var p in Model)
+                {
+                <tr>
+                    <td>@p.Id</td>
+                    <td>@p.Filial</td>
+                    <td>@p.NomeDaSimulacao</td>
+                    <td>@p.DataDeCriacao</td>
+                    <td>@p.Codigo - @p.Descricao</td>
+                    <td>@p.Familia</td>
+                    <td>@p.CustoTotalDoProduto</td>
+                    <td>@p.CustoTotalDoProdutoMargem</td>
+                    <td>
+                        <a href="@Url.Action("Vizualizar","Simulador",new { Area="SimulacaoLista",idSimulacao=p.Id,geraPdf=false})">
+                            <img class="ico" src="~/Content/Imagens/Icons/visualizar-arquivo-48.png" />
+                        </a>
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Vizualizar","Simulador",new { Area="SimulacaoLista",idSimulacao=p.Id,geraPdf=true})">
+                            <img class="ico" src="~/Content/Imagens/Icons/pdf-2-24.png" />
+                        </a>
+                    </td>
+                    @if (p.Aprovado == true)
+                    {
+
+                        <td><img src="~/Content/Imagens/Icons/approval.png" class="ico" /></td>
+                        if (p.DataDeAprovacao.ToString() != "01/01/0001 00:00:00")
+                        {
+                            <td>@p.DataDeAprovacao.ToLocalTime()</td>
+                        }
+                        else
+                        {
+                            <td></td>
+                        }
+
+
+                    }
+                    else
+                    {
+                        <td><img src="~/Content/Imagens/Icons/cancelar-48.png" class="ico" /></td>
+                        if (p.DataDeAprovacao.ToString() != "01/01/0001 00:00:00")
+                        {
+                            <td>@p.DataDeAprovacao.ToLocalTime()</td>
+                        }
+                        else
+                        {
+                            <td></td>
+                        }
+                    }
+                    <td>
+                        <a href="@Url.Action("Excluir","Simulador",new { Area="SimulacaoLista",id=p.Id})">
+                            <img src="~/Content/Imagens/Icons/apagar-64.png" class="ico" />
+                        </a>
+                    </td>
+                </tr>
+                }
+            </tbody>            
+        </table>
+    </div>
+</div>
+

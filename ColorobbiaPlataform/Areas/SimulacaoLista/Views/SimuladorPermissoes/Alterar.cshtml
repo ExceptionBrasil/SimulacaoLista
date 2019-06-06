@@ -1,0 +1,55 @@
+﻿@model Modelos.SimulacaoLista.PermissoesDaSimulacaoModelView
+@{
+    ViewBag.Title = "Alterar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col col-12">
+            <h3>Alteração da regra de vizualização</h3>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col col-md-12 col-lg-12 col-sm-12">
+            @using (Html.BeginForm("Alterar", "SimuladorPermissoes", FormMethod.Post))
+            {
+
+                @Html.AntiForgeryToken()
+                @Html.Partial("_Permissoes")
+
+                <hr />
+
+                <input type="submit" class="btn btn-primary" value="Alterar" />
+                @Html.ActionLink("Voltar", "Index", "SimuladorPermissoes", new { Area = "SimulacaoLista" }, new { @class = "btn btn-outline-success" })
+
+
+                <div class="toaster">
+                    @Html.ValidationMessageFor(p => p.NivelMaximo)
+                </div>
+
+                <div class="toaster">
+                    @Html.ValidationMessageFor(p => p.Role)
+                </div>
+
+                <div class="toaster">
+                    @Html.ValidationMessageFor(p => p.DiscoverCustos)
+                </div>
+
+            }
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            for (var i = 0; i < $("#TipoDeCalculo")[0].options.length; i++) {
+                if ($("#TipoDeCalculo")[0].options[i].value ==="@Model.TipoDeCalculo") {
+                     $("#TipoDeCalculo")[0].selectedIndex=$("#TipoDeCalculo")[0].options[i].index
+                }
+            }
+        });
+    </script>
+}
