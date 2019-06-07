@@ -86,7 +86,7 @@
                 @foreach (var p in ViewBag.Aprovados)
                 {
                     <tr>
-                        <td>@p.Id</td>
+                        <td data-tippy="@p.UsuarioDeCriacao.Nome">@p.Id</td>
                         <td>@p.Filial</td>
                         <td>@p.Descricao</td>
                         <td>@p.Familia</td>

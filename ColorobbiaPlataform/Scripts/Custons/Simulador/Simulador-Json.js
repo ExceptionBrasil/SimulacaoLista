@@ -97,42 +97,81 @@ var SaveToJson = (function () {
     }
     
     function getCustoEmbalagemPercent() {
+        if (document.querySelector("#CustoEmbalagemPercent") === null) {
+            return 0;
+        }
         return toFloat(document.querySelector("#CustoEmbalagemPercent").innerText);
     }
     function getCustoEmbalagem() {
+        if (document.querySelector("#Embalagem") === null) {
+            return 0;
+        }
         return toFloat(document.querySelector("#Embalagem").innerText);
     }
     function getCustoOperacional() {
+        if (document.querySelector("#CustoOperacional") === null) {
+            return 0;
+        }
         return toFloat(document.querySelector("#CustoOperacional").innerText);
     }
     function getCustoIndustrial() {
+        if (document.querySelector("#CustoIndustrial") === null) {
+            return 0;
+        }
         return toFloat(document.querySelector("#CustoIndustrial").innerText);
     }
     function getDespesasOperacionais() {
+        if (document.querySelector("#DespesaOperacional") === null) {
+            return 0;
+        }
         return toFloat(document.querySelector("#DespesaOperacional").innerText);
     }
     function getDespesasOperacionaisCalculada() {
+        if (document.querySelector("#DespesasOperacionaisCalculada") === null) {
+            return 0;
+        }
         return toFloat(document.querySelector("#DespesasOperacionaisCalculada").innerText);
     }
     function getCustoTotalDoProduto() {
+        if (document.querySelector("#CustoTotalDoProduto") === null) {
+            return 0;
+        }
         return toFloat(document.querySelector("#CustoTotalDoProduto").innerText);
     }
     function getCustoTotalDoProdutoMargem() {
+        if (document.querySelector("#CustoTotalDoProdutoMargem") === null) {
+            return 0;
+        }
         return toFloat(document.querySelector("#CustoTotalDoProdutoMargem").innerText);
     }
     function getMargemLucro() {
+        if (document.querySelector("#MargemLucro") === null) {
+            return 0;
+        }
         return toFloat(document.querySelector("#MargemLucro").innerText);
     }
     function getPrecoBase() {
+        if (document.querySelector("#PrecoBase") === null) {
+            return 0;
+        }
         return toFloat(document.querySelector("#PrecoBase").innerText);
     }
     function getPrecoBaseIcm7() {
+        if (document.querySelector("#Icms7") === null) {
+            return 0;
+        }
         return toFloat(document.querySelector("#Icms7").innerText);
     }
     function getPrecoBaseIcm12() {
+        if (document.querySelector("#Icms12") === null) {
+            return 0;
+        }
         return toFloat(document.querySelector("#Icms12").innerText);
     }
     function getPrecoBaseIcm18() {
+        if (document.querySelector("#Icms18") === null) {
+            return 0;
+        }
         return toFloat(document.querySelector("#Icms18").innerText);
     }
 

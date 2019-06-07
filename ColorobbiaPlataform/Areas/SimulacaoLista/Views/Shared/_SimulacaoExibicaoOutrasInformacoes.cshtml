@@ -1,10 +1,7 @@
 ﻿@model IList<Modelos.Formulas.EstruturaProduto>
 
-@if (ViewBag.Permissoes.DiscoverCustos)
-{
 
-
-    <div class="card blue lighten-4">
+    <div class="card blue lighten-4" @ViewBag.HiddenCol >
         <div class="card-header">
             <div class="text-center">
                 <h5>Fórmula Simulação - @ViewBag.FormulaSimulacao</h5>
@@ -90,4 +87,3 @@
             <hr />
         </div>
     </div>
-}
